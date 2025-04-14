@@ -1,0 +1,15 @@
+CREATE TABLE team
+(
+    team_id    SERIAL PRIMARY KEY,
+    name       VARCHAR(100) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE users
+(
+    user_id    SERIAL PRIMARY KEY,
+    team_id    INTEGER REFERENCES team (team_id) ON DELETE CASCADE,
+    username   VARCHAR(100) NOT NULL UNIQUE,
+    email      VARCHAR(100) NOT NULL UNIQUE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

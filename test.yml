@@ -1,0 +1,45 @@
+jooq {
+version = jooqVersion
+configurations {
+main {
+generateSchemaSourceOnCompilation = true
+generationTool {
+generator {
+name = 'org.jooq.codegen.DefaultGenerator'
+database {
+name = "org.jooq.meta.extensions.ddl.DDLDatabase"
+properties {
+property {
+key = "scripts"
+value = "src/main/resources/db/migration/jooq_schema.sql"
+}
+property {
+key = "sort"
+value = "semantic"
+}
+property {
+key = "unqualifiedSchema"
+value = "none"
+}
+property {
+key = "defaultNameCase"
+value = "lower"
+}
+}
+}
+generate {
+deprecated = false
+records = true
+immutablePojos = true
+fluentSetters = true
+}
+target {
+packageName = 'nu.studer.sample'
+directory = 'build/generated-src/jooq/main'  // default (can be omitted)
+}
+strategy.name = 'org.jooq.codegen.DefaultGeneratorStrategy'
+}
+}
+}
+}
+}
